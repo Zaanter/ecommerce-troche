@@ -1,20 +1,13 @@
-import {Card, Button} from 'react-bootstrap'
+import {Container} from 'react-bootstrap'
+import ItemCount from '../ItemCount';
 
-const ItemListContainer = ({greeting}) => {
+
+const ItemListContainer = ({children}) => {
     return ( 
         <>
-            <Card style={{ width:'100%', minHeight:1080, backgroundColor:'lightblue'}}>
-                
-                <Card.Body>
-                    <Card.Title>Texto de la propiedad "greeting":</Card.Title>
-                    <Card.Text>
-                        {
-                            greeting
-                        }
-                    </Card.Text>
-                    
-                </Card.Body>
-            </Card>
+            <Container style={{ width:'100%', minHeight:'90vh', backgroundColor:'lightblue'}}>
+                <ItemCount onAdd={(cant)=>alert('Se agregan al carrito: ' + cant + ' productos.')} stock={10} initial={1}></ItemCount>
+            </Container>
         </>
      );
 }

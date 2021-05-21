@@ -10,7 +10,7 @@ function App() {
   return (
     <div>
       <NavbarContainer></NavbarContainer>
-      <ItemListContainer greeting='Hola, soy un texto enviado por una propiedad.'></ItemListContainer>
+      <ItemListContainer></ItemListContainer>
     </div>
   );
 }
