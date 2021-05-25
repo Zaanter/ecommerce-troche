@@ -20,8 +20,8 @@ const ItemCount = ({stock, initial, onAdd}) => {
                     {cantidad}
                     </Card.Text>
                     <div style={{margin:5}}>
-                        <Button style={{margin:5}} onClick={()=>handleClick(1)}>+</Button>
                         <Button style={{margin:5}} onClick={()=>handleClick(-1)}>-</Button>
+                        <Button style={{margin:5}} onClick={()=>handleClick(1)}>+</Button>
                     </div>
                     <Button onClick={()=>onAdd(cantidad)}>Agregar al carrito</Button>
                     
