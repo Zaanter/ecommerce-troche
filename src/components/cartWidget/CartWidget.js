@@ -1,9 +1,10 @@
 import CartIcon from './Cart.png'
+import {IoCartOutline} from 'react-icons/io5'
 
 const CartWidget = () => {
     return ( 
         <>
-            <img src={CartIcon} style={{width:30, height:'100%', marginInline:30}} alt={'CartIcon'}></img>
+            <IoCartOutline size={30}></IoCartOutline>
         </>
      );
 }

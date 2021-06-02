@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import { Container, Spinner } from "react-bootstrap";
 import ItemDetail from './ItemDetail';
-
+import productsMock from '../mock/productosMock'
+import { useParams } from 'react-router';
 
 const ItemDetailContainer = () => {
 
+    const { id } = useParams()
     const [producto, setProducto] = useState('')
 
     useEffect(()=>{
@@ -15,14 +17,20 @@ const ItemDetailContainer = () => {
         })
 
         getItems.then(()=>{
-            setProducto({
-                nombre:'Zapato',
-                precio:'350',
-                descripcion:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            productsMock.map(producto => {
+                if(id == producto.id){
+                    setProducto({
+                        'title': producto.title,
+                        'category': producto.category,
+                        'price': producto.price,
+                        'description': producto.description,
+                        'url': producto.pictureUrl
+                    })
+                }
             })
         })
 
-    },[])
+    },[id])
 
 
     if(producto == ''){
@@ -35,7 +43,7 @@ const ItemDetailContainer = () => {
         return ( 
             <Container style={{ height:'90vh', display:'flex', alignItems:'center', justifyContent:'center'}}>
                 {
-                    producto && <ItemDetail nombre={producto.nombre} precio={producto.precio} descripcion={producto.descripcion}></ItemDetail> 
+                    producto && <ItemDetail nombre={producto.title} precio={producto.price} descripcion={producto.description} url={producto.url}></ItemDetail> 
                 }
             </Container>
          );
