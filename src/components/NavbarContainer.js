@@ -1,13 +1,14 @@
-import React from 'react'
+import { Nav, NavDropdown, Navbar } from 'react-bootstrap'
+
 import CartWidget from './cartWidget/CartWidget'
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
+import React from 'react'
 
 const NavbarContainer = ({categorias}) => {
     return(
         <>
             <Navbar bg="light" expand="lg" style={{paddingRight:20, paddingLeft:20, paddingTop:10, paddingBottom:10, height:'10vh'}} className='justify-content-between'>
-                <Navbar.Brand href="/">Ecommerce Troche</Navbar.Brand>
+                <Navbar.Brand><NavLink style={{color:'black', textDecoration:'none'}} to='/'>Ecommerce Troche</NavLink></Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav className={'ms-auto'} style={{ maxHeight: '100px'}}>

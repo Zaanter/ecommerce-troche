@@ -31,8 +31,6 @@ const ItemDetail = ({id,nombre, precio, descripcion, url}) => {
 
 
     
-    console.log(cartContext)
-
     if(added){
         return(
             <Redirect to='/cart' />

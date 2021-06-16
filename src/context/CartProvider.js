@@ -16,7 +16,7 @@ const CartProvider = ({ defaultValue = [], children }) => {
 
     const removeItem = (itemId) => {
         const items = cartItems.filter(cartItem => cartItem.item.id !== itemId)
-        setCartItems([items])
+        setCartItems(items)
     }
 
     const clear = () => {
