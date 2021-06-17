@@ -1,6 +1,6 @@
 import {Container} from 'react-bootstrap'
 // import ItemCount from '../ItemCount';
-import ItemList from '../ItemList';
+import ItemList from './ItemList';
 
 const ItemListContainer = ({children}) => {
     return ( 

@@ -1,43 +1,65 @@
-import React, { useEffect, useState } from 'react'
 import { Container, Row, Spinner } from 'react-bootstrap'
+import React, { useEffect, useState } from 'react'
+
 import Item from './Item'
+import { getFirestore } from '../firebase'
 import productsMock from '../mock/productosMock'
 import { useParams } from 'react-router'
-
-
 
 const ItemList = () => {
 
     const { id } = useParams();
     const [ products, setProducts ] = useState([])
+    const [ loading , setLoading ] = useState(false)
 
     useEffect(()=>{
-        console.log(id)
-        const promise = new Promise((res, rej) => {
-            setProducts([])
-            setTimeout(()=>{
-                res(true)
-            },2000)
-        })
 
-        promise.then(()=>{
+
+        const db = getFirestore()
+        if(id){
             
-            if(id){
-                let prod = []
-                productsMock.map(producto =>{
-                    if(id == producto.category){
-                        prod.push(producto)
-                    }
-                })
-                setProducts(prod)
-            }else{
-                setProducts(productsMock)
-            }
-        })
+            const itemCollection = db.collection('items').where('category', '==' ,id)
+            
+            itemCollection.get().then((snap) => {
+                if(snap.size === 0){
+                    console.log('No hay valores con esa categoría.')
+                }
+                setProducts(
+                    snap.docs.map((doc) => {
+                        console.log(doc)
+                        return {id:doc.id, ...doc.data() }
+                    })
+                )
+            }).catch((error) => {
+                console.log('Error buscando items', error)
+            }).finally(()=>{
+                setLoading(true)
+            })
+            
+        }else{
+
+            const itemCollection = db.collection('items')
+
+            itemCollection.get().then((snap) => {
+                if(snap.size === 0){
+                    console.log('No hay valores')
+                }
+                setProducts(
+                    snap.docs.map((doc) => {
+                        console.log(doc)
+                        return {id:doc.id, ...doc.data() }
+                    })
+                )
+            }).catch((error) => {
+                console.log('Error buscando items', error)
+            }).finally(()=>{
+                setLoading(true)
+            })
+        }
 
     },[id])
 
-    if(products.length == 0){
+    if(products.length == 0 || !loading){
         return(
             <Container style={{ height:'85vh', display:'flex', alignItems:'center', justifyContent:'center'}}>
                 <Spinner animation="border" variant="dark" style={{width:50, height:50}} />

@@ -7,7 +7,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Cart from './components/Cart.js'
 import CartProvider from './context/CartProvider'
 import ItemDetailContainer from './components/ItemDetailContainer.js'
-import ItemListContainer from './components/itemListContainer/ItemListContainer.js'
+import ItemListContainer from './components/ItemListContainer.js'
 import NavbarContainer from './components/NavbarContainer.js'
 
 function App() {

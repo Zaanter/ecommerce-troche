@@ -2,34 +2,29 @@ import { Container, Spinner } from "react-bootstrap";
 import React, {useEffect, useState} from 'react'
 
 import ItemDetail from './ItemDetail';
-import productsMock from '../mock/productosMock'
+import { getFirestore } from "../firebase";
 import { useParams } from 'react-router';
 
 const ItemDetailContainer = () => {
 
     const { id } = useParams()
     const [producto, setProducto] = useState('')
-
+    const [loading, setLoading ] = useState(false)
+    
     useEffect(()=>{
-        const getItems = new Promise((res, rej) => {
-            setTimeout(()=>{
-                res(true)
-            },2000)
-        })
-
-        getItems.then(()=>{
-            productsMock.map(producto => {
-                if(id == producto.id){
-                    setProducto({
-                        'id': producto.id,
-                        'title': producto.title,
-                        'category': producto.category,
-                        'price': producto.price,
-                        'description': producto.description,
-                        'url': producto.pictureUrl
-                    })
-                }
-            })
+        
+        const db = getFirestore()
+        const itemCollection = db.collection('items')
+        const item = itemCollection.doc(id)
+        item.get().then((item) => {
+            if(!item.exists){
+                console.log('El item no existe.')
+            }
+            setProducto({ id:item.id , ...item.data() })
+        }).catch((error)=>{
+            console.log('Hubo un error al cargar el producto.', error)
+        }).finally(()=>{
+            setLoading(true)
         })
 
     },[id])
@@ -45,7 +40,7 @@ const ItemDetailContainer = () => {
         return ( 
             <Container style={{ height:'90vh', display:'flex', alignItems:'center', justifyContent:'center'}}>
                 {
-                    producto && <ItemDetail id={producto.id} nombre={producto.title} precio={producto.price} descripcion={producto.description} url={producto.url}></ItemDetail> 
+                    producto && <ItemDetail id={producto.id} nombre={producto.title} precio={producto.price} descripcion={producto.description} url={producto.pictureUrl}></ItemDetail> 
                 }
             </Container>
          );
