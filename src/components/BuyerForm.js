@@ -26,6 +26,7 @@ const BuyerForm = () => {
     const db = getFirestore()
     
     const buy = (e) => {
+        e.preventDefault()
         if(email !== '' && phone !== '' && name !== '' && surname !== '' && secondEmail !== '' ){
             if(email === secondEmail){
                 setLoading(true)
@@ -62,6 +63,7 @@ const BuyerForm = () => {
                     cart.clear()
                 })
             }else{
+                setSecondEmail('')
                 alert('Los emails no coinciden.')
             }
         }else{
