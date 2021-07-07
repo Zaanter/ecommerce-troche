@@ -27,26 +27,26 @@ const BuyerForm = () => {
     
     const buy = (e) => {
         if(email !== '' && phone !== '' && name !== '' && surname !== '' && secondEmail !== '' ){
-            setLoading(true)
-            let _totalPrice = 0
-            cart.cartItems.map(item => {
-                const cant = item.quantity
-                    _totalPrice += item.item.precio * cant
-            })
-    
-            const order = {
-                buyer:{
-                    name,
-                    email,
-                    phone,
-                    surname
-                },
-                items:cart.cartItems,
-                total: _totalPrice,
-                date: firebase.firestore.Timestamp.fromDate(new Date())
-            }
-            
             if(email === secondEmail){
+                setLoading(true)
+                let _totalPrice = 0
+                cart.cartItems.map(item => {
+                    const cant = item.quantity
+                        _totalPrice += item.item.precio * cant
+                })
+        
+                const order = {
+                    buyer:{
+                        name,
+                        email,
+                        phone,
+                        surname
+                    },
+                    items:cart.cartItems,
+                    total: _totalPrice,
+                    date: firebase.firestore.Timestamp.fromDate(new Date())
+                }
+            
                 db.collection('orders').add(order).then(({id})=>{
                     cart.cartItems.map((item) => {
                         db.collection('items').doc(item.item.id).update({
