@@ -10,12 +10,12 @@ El objetivo de este trabajo era realizar una tienda online que permita controlar
 ## Funcionalidades del ecommerce
 
 La web tiene la funcionalidad de:
-	- Mostrar todos los productos
-	- Filtrar productos por categorías
-	- Cargar carrito de compras
-	- Bloquear productos si se queda sin stock.
-	- Realizar la compra.
-	- Verificar estado de la compra a través de la funcionalidad "Verificar compra".
+ - Mostrar todos los productos
+ - Filtrar productos por categorías
+ - Cargar carrito de compras
+ - Bloquear productos si se queda sin stock.
+ - Realizar la compra.
+ - Verificar estado de la compra a través de la funcionalidad "Verificar compra".
 
 ## Pasos para iniciar proyecto:
  - Clonar repositorio: 
