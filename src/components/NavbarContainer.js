@@ -7,7 +7,7 @@ import React from 'react'
 const NavbarContainer = ({categorias}) => {
     return(
         <>
-            <Navbar bg="light" expand="lg" style={{paddingRight:20, paddingLeft:20, paddingTop:10, paddingBottom:10, height:'10vh'}} className='justify-content-between'>
+            <Navbar bg="light" expand="lg" style={{paddingRight:20, paddingLeft:20, paddingTop:10, paddingBottom:10, minHeight:'10vh', zIndex:1}} className='justify-content-between'>
                 <Navbar.Brand><NavLink style={{color:'black', textDecoration:'none'}} to='/'>Ecommerce Troche</NavLink></Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
@@ -27,8 +27,8 @@ const NavbarContainer = ({categorias}) => {
                             }
                         </NavDropdown>
 
-                        <Nav.Link><NavLink to='/perfil' activeStyle={{color:'orange'}} style={{color:'black', textDecoration:'none'}}>Perfil</NavLink></Nav.Link>
-
+                        <Nav.Link><NavLink to='/validate-purchase' activeStyle={{color:'orange'}} style={{color:'black', textDecoration:'none'}}>Verificar compra</NavLink></Nav.Link>
+                        
 
                         <Nav.Link href="#">
                             <CartWidget></CartWidget>

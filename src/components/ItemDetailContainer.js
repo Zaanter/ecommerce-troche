@@ -40,7 +40,7 @@ const ItemDetailContainer = () => {
         return ( 
             <Container style={{ height:'90vh', display:'flex', alignItems:'center', justifyContent:'center'}}>
                 {
-                    producto && <ItemDetail id={producto.id} nombre={producto.title} precio={producto.price} descripcion={producto.description} url={producto.pictureUrl}></ItemDetail> 
+                    producto && <ItemDetail stock={producto.stock} id={producto.id} nombre={producto.title} precio={producto.price} descripcion={producto.description} url={producto.pictureUrl}></ItemDetail> 
                 }
             </Container>
          );

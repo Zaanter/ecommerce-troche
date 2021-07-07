@@ -52,7 +52,8 @@ const Cart = () => {
                         </div>
                     </Col>
                     <div style={{display:'flex', flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
-                        <Button><Link style={{color:'white', textDecoration:'none'}} to='/'>Seguir comprando</Link></Button>
+                        <Button style={{marginRight:30, backgroundColor:'white', borderColor:'blue-6'}}><Link style={{color:'blue-6', textDecoration:'none'}} to='/'>Seguir comprando</Link></Button>
+                        <Button><Link style={{color:'white', textDecoration:'none'}} to='/buyer-form'>Finalizar compra</Link></Button>
                     </div>
                 </Container>
              );

@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 
 import Item from './Item'
 import { getFirestore } from '../firebase'
-import productsMock from '../mock/productosMock'
 import { useParams } from 'react-router'
 
 const ItemList = () => {

@@ -1,5 +1,20 @@
+
+
 .container{
     min-height: 80vh;
     padding:25px;
     background-color: lightblue;
+}
+
+.customInput{
+    width: 60%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+input{
+    height:35px;
+    border-radius: 10px;
+    font-size: 18px;
 }

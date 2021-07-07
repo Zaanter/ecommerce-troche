@@ -2,21 +2,25 @@ import React, { useState } from 'react'
 
 export const CartContext = React.createContext()
 
+
+
 const CartProvider = ({ defaultValue = [], children }) => {
+    //State
     const [ cartItems , setCartItems ] = useState(defaultValue)
 
+
+    //Metods
     const addItem = (item,quantity) => {
-        
         if(!isInCart(item.id)){
             setCartItems([...cartItems, { item, quantity }])
         }
-
-
     }
 
     const removeItem = (itemId) => {
         const items = cartItems.filter(cartItem => cartItem.item.id !== itemId)
         setCartItems(items)
+
+    
     }
 
     const clear = () => {

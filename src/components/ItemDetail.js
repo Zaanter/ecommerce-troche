@@ -6,7 +6,7 @@ import { CartContext } from '../context/CartProvider'
 import ItemCount from './ItemCount'
 import zapato from '../assets/images/zapato.jpeg'
 
-const ItemDetail = ({id,nombre, precio, descripcion, url}) => {
+const ItemDetail = ({id,nombre, stock, precio, descripcion, url}) => {
     
     const cartContext = useContext(CartContext)
     const [cantidad , setCantidad ] = useState('')
@@ -22,7 +22,8 @@ const ItemDetail = ({id,nombre, precio, descripcion, url}) => {
             nombre,
             precio,
             descripcion,
-            url
+            url,
+            stock
         }
 
         cartContext.addItem(item,cantidad)
@@ -54,9 +55,15 @@ const ItemDetail = ({id,nombre, precio, descripcion, url}) => {
                             </Card.Subtitle>
                             {
                                 cantidad == '' ?
-                                <div style={{justifyContent:'center', display:'flex'}}>
-                                    <ItemCount onAdd={(cant)=> onAdd(cant)} stock={10} initial={1}></ItemCount>
-                                </div>
+                                stock > 0 ?
+                                    <div style={{justifyContent:'center', display:'flex'}}>
+                                        <ItemCount onAdd={(cant)=> onAdd(cant)} stock={stock} initial={1}></ItemCount>
+                                    </div>
+                                    :
+                                    <div style={{justifyContent:'center', display:'flex', flexDirection:'column', alignItems:'center'}}>
+                                        <h5>Este producto no tiene más stock.</h5>
+                                        <Button><Link to='/' style={{color:'white', textDecoration:'none'}}>Volver</Link></Button>
+                                    </div>
                                 :
                                 <div style={{margin:50, display:'flex',flexDirection:'column',alignItems:'center', justifyContent:'center'}}>
                                     <h5>Has seleccionado: {cantidad} productos.</h5>
